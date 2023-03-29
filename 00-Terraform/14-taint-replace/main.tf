@@ -13,3 +13,11 @@ resource "azurerm_resource_group" "rqg" {
 
 # terraform -replace="rg-354ample"
 # terraform taint rg-354ample
+
+# For Module 
+# List Resources from State
+# terraform state list
+
+# Taint a Resource
+# terraform taint <RESOURCE-NAME>
+# terraform taint module.vnet.azurerm_subnet.subnet[2]

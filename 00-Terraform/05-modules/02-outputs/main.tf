@@ -46,5 +46,5 @@ module "nsg" {
 
 resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
   subnet_id                 = azurerm_subnet.subnet1.id
-  network_security_group_id = module.nsg.nsg_id #here it making a module call from ouput 
+  network_security_group_id = module.nsg.nsg_id #here it making a module call from ouput variable 
 }

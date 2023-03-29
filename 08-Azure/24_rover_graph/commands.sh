@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=2Y9yXgURxyE&ab_channel=HoussemDellai
+
 # make sure terraform CLI is installed
 terraform
 

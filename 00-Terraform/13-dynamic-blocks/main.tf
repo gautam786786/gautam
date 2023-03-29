@@ -29,12 +29,12 @@ locals {
   access_policy = {
     AzureDevOps = {
       tenant_id          = "a9a2d5a7-17e6-463b-9fc5-b057b14e6aa5"
-      object_id          = "837f1a08-6407-4639-b1dd-a2b7a013a0af",
+      object_id          = "837f1a08-6407-4639-b1dd-a2b7a013a0af",  #object_id  of usr azuredevops
       secret_permissions = ["Get", "Set"]
     }
     gautam = {
       tenant_id          = "a9a2d5a7-17e6-463b-9fc5-b057b14e6aa5"
-      object_id          = "a3ca9a64-e073-45fd-8dd4-d7ac2798f4fd",
+      object_id          = "a3ca9a64-e073-45fd-8dd4-d7ac2798f4fd",  #object_id  of user gautam
       secret_permissions = ["Get", "Set"]
     }
     gautam1 = {
