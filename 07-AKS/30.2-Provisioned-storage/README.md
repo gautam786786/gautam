@@ -4,8 +4,7 @@
 - We are going to use Azure AKS provisioned storage class as part of this section
 
 ## Step-02: Use AKS Provisioned Azure Disks
-- Copy all templates from previous section
-- Remove Storage Class Manifest
+
 - **Question-1:** Why do we need to remove storage class Manifests?
 - Azure AKS provisions two types of storage classes well in advance during the cluster creation process
   - managed-premium

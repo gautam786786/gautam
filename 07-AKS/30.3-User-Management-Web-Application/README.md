@@ -8,14 +8,6 @@
   - List Users
   - Delete User
 
-
-| Kubernetes Concepts  | YAML File |
-| ------------- | ------------- |
-| Deployment  | 05-UserMgmtWebApp-Deployment.yml  |
-| Environment Variables  | 05-UserMgmtWebApp-Deployment.yml  |
-| Init Containers  | 05-UserMgmtWebApp-Deployment.yml  |
-| Load Balancer Service  | 06-UserMgmtWebApp-Service.yml  |
-
 ## Step-02: Create following Kubernetes manifests
 
 ### Create User Management Web Application k8s Deployment manifest
