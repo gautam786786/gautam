@@ -13,3 +13,5 @@ kubectl apply -f bad-namespace.yaml
 
 # Deploy a namespace allowed by Policy
 kubectl apply -f good-namespace.yaml
+
+# https://www.youtube.com/watch?v=urvSPmlU69k&ab_channel=HoussemDellai

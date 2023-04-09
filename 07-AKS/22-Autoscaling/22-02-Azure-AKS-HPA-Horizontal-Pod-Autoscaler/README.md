@@ -1,10 +1,5 @@
 # Azure AKS - Horizontal Pod Autoscaling (HPA)
 
-## Step-01: Introduction
-- What is Horizontal Pod Autoscaling?
-- How HPA Works?
-- How HPA configured?
-- Metrics Server
 
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-1.png)

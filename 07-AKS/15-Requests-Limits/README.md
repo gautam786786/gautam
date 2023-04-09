@@ -7,11 +7,6 @@
 - When you specify a resource limit for a Container, the kubelet enforces those `limits` so that the running container is not allowed to use more of that resource than the limit you set. 
 -  The kubelet also reserves at least the `request` amount of that system resource specifically for that container to use.
 
-[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-1.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-1.png){:target="_blank"}  
-
-[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-2.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-resources-requests-limits-2.png){:target="_blank"}  
-
-
 ## Step-02: Add Requests & Limits & Review k8s Manifests
 - **Folder:** kube-manifests-v1
 ```yaml
