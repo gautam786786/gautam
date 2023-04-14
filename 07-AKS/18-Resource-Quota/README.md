@@ -66,12 +66,3 @@ http://<Public-IP-from-List-Services-Output>/app1/index.html
 # Delete All
 kubectl delete -f kube-manifests/
 ```
-
-## References:
-- https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
-- https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/
-
-
-## Additional References:
-- https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-constraint-namespace/ 
-- https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-constraint-namespace/

@@ -17,12 +17,14 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+  name     = "aks-rg1"
   location = "West Europe"
 }
 
+# az aks get-credentials --resource-group aks-rg1 --name aksdemo1 --overwrite-existing && kubelogin convert-kubeconfig
+
 resource "azurerm_kubernetes_cluster" "example" {
-  name                = "example-aks1"
+  name                = "aksdemo1"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   dns_prefix          = "exampleaks1"
@@ -40,15 +42,4 @@ resource "azurerm_kubernetes_cluster" "example" {
   tags = {
     Environment = "Production"
   }
-}
-
-output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.example.kube_config.0.client_certificate
-  sensitive = true
-}
-
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
-
-  sensitive = true
 }

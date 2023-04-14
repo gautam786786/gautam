@@ -1,19 +1,5 @@
 # Create Azure AKS Cluster using AZ AKS CLI
 
-## Step-01: Introduction
-- Design a Production grade cluster using command line
-- az aks cli
-
-### Pre-requisite Items for AKS Cluster Design
-- Create Resource Group
-- Create Azure Virtual Network
-  - Create default Subnet for AKS Nodepools
-  - Create separate Subnet for Virtual Nodes (Serverless)
-- Create Azure AD User, Group for managing AKS Clusters using Azure AD Users
-- Create SSH Keys to enable and access Kubernetes Workernodes via SSH Terminal
-- Create Log Analytics Workspace for enabling Monitoring Add On during AKS Cluster creation  
-- Set Windows Username and Password during AKS Cluster creation to have AKS Cluster support future Windows Nodepools
-
 
 
 ## Step-02: Pre-requisite-1: Create Resource Group

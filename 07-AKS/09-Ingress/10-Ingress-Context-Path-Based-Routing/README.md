@@ -5,13 +5,6 @@
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-path-based-routing.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-## Step-02: Review k8s Application Manifests
-- 01-NginxApp1-Manifests
-- 02-NginxApp2-Manifests
-- 03-UserMgmtmWebApp-Manifests
-
-## Step-03: Review Ingress Service Manifests
-- 04-IngressService-Manifests
 
 ## Step-04: Deploy and Verify
 ```t

@@ -97,12 +97,6 @@ kubectl describe clusterissuer letsencrypt
 ```
 
 
-## Step-07: Review Application NginxApp1,2 K8S Manifests
-- 01-NginxApp1-Deployment.yml
-- 02-NginxApp1-ClusterIP-Service.yml
-- 01-NginxApp2-Deployment.yml
-- 02-NginxApp2-ClusterIP-Service.yml
-
 ## Step-08: Create or Review Ingress SSL Kubernetes Manifest
 - 01-Ingress-SSL.yml
 

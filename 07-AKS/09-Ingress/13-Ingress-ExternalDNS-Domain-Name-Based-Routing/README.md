@@ -6,14 +6,6 @@
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-domain-name-based-routing.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-## Step-02: Review k8s Application Manifests
-- App1 Manifests
-- App2 Manifests
-- App3 Manifests
-
-## Step-03: Review Ingress Service Manifests
-- 01-Ingress-DomainName-Based-Routing-app1-2-3.yml
-
 
 ## Step-04: Deploy and Verify
 ```t

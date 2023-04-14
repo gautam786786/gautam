@@ -4,15 +4,6 @@
 ### Ingress Basic Architecture
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-### What are we going to learn?
-- We are going to create a **Static Public IP** for Ingress in Azure AKS
-- Associate that Public IP to **Ingress Controller** during installation.
-- We are going to create a namespace `ingress-basic` for Ingress Controller where all ingress controller related things will be placed. 
-- In future, we install **cert-manager** for SSL certificates also in same namespace. 
-- **Caution Note:** This namespace is for Ingress controller stuff, ingress resource we can create in any other namespaces and not an issue.  Only condition is create ingress resource and ingress pointed application in same namespace (Example: App1 and Ingress resource of App1 should be in same namespace)
-- Create / Review Ingress Manifest
-- Deploy a simple Nginx App1 with Ingress manifest and test it
-- Clean-Up or delete application after testing
 
 ## Step-02: Create Static Public IP
 ```t
@@ -82,11 +73,6 @@ http://<Public-IP-created-for-Ingress>
 # Verify Load Balancer on Azure Mgmt Console
 Primarily refer Settings -> Frontend IP Configuration
 ```
-
-## Step-04: Review Application k8s manifests
-- 01-NginxApp1-Deployment.yml
-- 02-NginxApp1-ClusterIP-Service.yml
-- 03-Ingress-Basic.yml
 
 ## Step-05: Deploy Application k8s manifests and verify
 ```t

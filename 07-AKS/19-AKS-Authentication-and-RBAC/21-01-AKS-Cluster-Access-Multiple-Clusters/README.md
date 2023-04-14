@@ -3,14 +3,6 @@ title: Azure AKS Cluster Access with Multiple Clusters
 description: Understand how to access multiple Azure Kubernetes AKS Clusters using kubectl
 ---
 
-## Step-01: Introduction
-- Azure AKS Cluster Access
-- Create Clusters using Command Line
-- Understand kube config file $HOME/.kube/config
-- Understand kubectl config command
-  - kubectl config view
-  - kubectl config current-context
-  - kubectl config use-context <context-name>
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-access-multiple-clusters.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-access-multiple-clusters.png)
 

@@ -5,15 +5,6 @@ description: Create Azure Pipeline to Build and Push Docker Image to Azure Conta
 # Azure DevOps - Build, Push to ACR and Deploy to AKS
 
 ## Step-00: Pre-requisites
-- We should have Azure AKS Cluster Up and Running.
-```
-# Configure Command Line Credentials
-az aks get-credentials --name aksdemo2 --resource-group aks-rg2
-
-# Verify Nodes
-kubectl get nodes 
-kubectl get nodes -o wide
-```
 
 ## Step-01: Introduction
 - Add a Deployment Pipeline in Azure Pipelines to Deploy newly built docker image from ACR to Azure AKS
