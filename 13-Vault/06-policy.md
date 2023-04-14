@@ -30,7 +30,6 @@ capabilities= [ "update", "delete"]
 }
 
 ``` 
-
 - we need to attach the policy 
 - Go to Authentication → userpass (whatever you created)
 - edit User → Token 
@@ -56,11 +55,9 @@ vault policy --help
 create a user and attach policy → vault write auth/userpass/users/bikram password=vault policies=secret_policy
 
 ```
-
 # Using API 
 
 - Create a json file name: secretngine.json
-
 ```t
 {
   "options" : {

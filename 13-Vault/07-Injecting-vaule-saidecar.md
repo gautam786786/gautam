@@ -34,6 +34,15 @@ path "internal/data/database/config" {
 # Create a service account 
 k create sa internal-app.
 
+#we also create a policy we need to map the two using a role. 
+access -> auth method -->
+name: internal-app
+Bound service account names : internal-app
+Bound service account namespace: default 
+Generate Token Policy: Internal-app
+
+#Check the roles is created 
+
 #Launch application 
 k apply -f k orgchart.yaml
 
