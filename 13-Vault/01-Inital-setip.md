@@ -2,7 +2,7 @@
 
 - Create an AKS cluster and Connect it to the AKS cluster 
 - check is helm is installed 
-- 
+  
 ```t
 # check helm if it's installed 
 helm                                                  
