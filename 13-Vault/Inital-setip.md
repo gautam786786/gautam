@@ -2,6 +2,7 @@
 
 - Create an AKS cluster and Connect it to the AKS cluster 
 - check is helm is installed 
+- 
 ```t
 # check helm if it's installed 
 helm                                                  
@@ -24,4 +25,15 @@ helm repo update
 
 #check all version 
 helm search repo vault --versions. → all the version  
+
+#Install vault
+helm install vault1 hashicorp/vault --set='ui.enable=true' --set='ui.serviceType=LoadBalancer'
+
+#Check the pods
+K get pods 
+
+# The the IP of the service
+k get service 
+
+# Copy the IP on the browser and add :8200
 ``` 
