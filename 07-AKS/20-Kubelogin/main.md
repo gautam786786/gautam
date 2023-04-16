@@ -1,6 +1,9 @@
-kubelogin
-To login to Kubernetes, we used to use the az aks get-credentials command which will donwload the credentials into .kube\config file and set up the command line to connect to the AKS cluster. But, when using Azure AD authentication, we get the following experience. We are asked to intercatively authenticate using the browser and code. This is not any good for DevOps pipelines which requires non-intercative mode. In addition to that, we get a warning about the deprecation of authentication using Azure CLI. Now we should use kubelogin.
-Kubelogin for AKS is available as open source project: https://github.com/Azure/kubelogin.
+# kubelogin
+- To login to Kubernetes, we used to use the az aks get-credentials command which will donwload the credentials into .kube\config file and set up the command line to connect to the AKS cluster. 
+- But, when using Azure AD authentication, we get the following experience. We are asked to intercatively authenticate using the browser and code. This is not any good for DevOps pipelines which requires non-intercative mode. 
+- In addition to that, we get a warning about the deprecation of authentication using Azure CLI. Now we should use kubelogin.
+  
+- Kubelogin for AKS is available as open source project: https://github.com/Azure/kubelogin.
 
  $ az aks get-credentials --resource-group rg-aks-cluster --name aks-cluster
 Merged "aks-cluster" as current context in C:\Users\hodellai\.kube\config
