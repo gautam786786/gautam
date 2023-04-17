@@ -62,5 +62,5 @@ resource "azurerm_windows_virtual_machine" "vm" {
     sku       = "2016-Datacenter"
     version   = "latest"
   }
-
+}
 }
