@@ -6,7 +6,7 @@ git config --get remote.origin.url
 git remote rm origin
 
 
- **Update your local master with the origin/master** 
+**Update your local master with the origin/master** 
 git pull origin master:master
 
 
