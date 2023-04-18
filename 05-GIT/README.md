@@ -7,7 +7,7 @@ git remote rm origin
 
 
  **Update your local master with the origin/master** 
- git pull origin master:master
+git pull origin master:master
 
 
 **Now your origin/masteris up to date, so you can rebase or merge your local branch with these changes.**
