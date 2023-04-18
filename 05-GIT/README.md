@@ -1,4 +1,5 @@
-**Get  the remote URL**:                             
+```t
+# Get  the remote URL                          
 git config --get remote.origin.url
 
 
@@ -46,7 +47,7 @@ git push --tags
 git add .
 git commit -m "w"
 git push
-
+``` 
 
 ---
 title: Install Terraform, Azure CLI and VSCode Editor
