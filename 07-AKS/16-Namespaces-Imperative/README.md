@@ -1,12 +1,5 @@
 # Kubernetes Namespaces - Imperative using kubectl
 
-## Step-01: Introduction
-- Namespaces allow to split-up resources into different groups.
-- Resource names should be unique in a namespace
-- We can use namespaces to create multiple environments like dev, staging and production etc
-- Kubernetes will always list the resources from `default namespace` unless we provide exclusively from which namespace we need information from.
-
-
 ## Step-02: Namespaces Generic - Deploy in Dev1 and Dev2
 ### Create Namespace
 ```
