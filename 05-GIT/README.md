@@ -1,5 +1,5 @@
 ```t
-# Get  the remote URL                          
+# Get the remote URL                          
 git config --get remote.origin.url
 
 
