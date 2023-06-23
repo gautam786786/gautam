@@ -1,19 +1,11 @@
-# Commands 
-
 # Configure Cluster Creds (kube config) for Azure AKS Clusters
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1 --overwrite-existing && kubelogin convert-kubeconfig
-
-Node  
 
 # Node Status ->                                     
 kubectl get nodes/   -o wide
 
-Pod 
-
 # List Pods →                                           
 kubectl get pods/ po  / -o wide
-
- 
 
 # Describe the pod →                         
 Kubectl describe pod <pod name>
@@ -21,16 +13,16 @@ Kubectl describe pod <pod name>
 # Delete Pod →                                     
 kubectl delete pod <Pod name>
 
-#Create a Pod →                                  
+# Create a Pod →                                  
 kubectl run <desired-pod-name> --image <Container-Image> 
 
-#Get Pods from Namespace →        
+# Get Pods from Namespace →        
 kubectl get pods -n <namespace> (kubectl get namespace/ns)
 
-#Logs→                                                   
+# Logs→                                                   
 k logs <pod-name>
 
-#stream pod logs with -f-->              
+# stream pod logs with -f-->              
 k logs -f <pod-name>
 
 Services 
@@ -45,7 +37,6 @@ delete svc <YourServiceName>
 kubectl get svc.   -n <namespace>
 
  
-
 Replicaset 
 
 # Replicaset Info →                                    
@@ -66,6 +57,7 @@ kubectl get namespace
 
 # Get all Objects in  namespace-->        
 kubectl get all. 
+kubectl get all --namespace <external-dns>
 
 # Create name space →                            
 kubectl create ns <name space>
@@ -78,9 +70,10 @@ kubectl get deployments --all-namespaces
 #  Delete →                                                       
 kubectl delete -n NAMESPACE deployment DEPLOYMENT
 
- 
 
 # NetworkPolicies-->                               
 k get NetworkPolicies -n gatekeeper-system
 k edit NetworkPolicies -n gatekeeper-system
 k apply -f <file> -n <namespace>
+
++31 6 83106811

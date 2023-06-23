@@ -39,7 +39,4 @@ resource "azurerm_kubernetes_cluster" "example" {
     type = "SystemAssigned"
   }
 
-  tags = {
-    Environment = "Production"
-  }
 }

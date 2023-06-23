@@ -5,3 +5,8 @@
 - az account show
 - Disconnect-AzAccount
 - az account set --subscription 'Visual Studio Professional Subscription'**	
+
+
+nano ~/.zshrc
+
+source ~/.bash_profile
