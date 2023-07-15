@@ -2,38 +2,29 @@
 # Get the remote URL                          
 git config --get remote.origin.url
 
-
 # To remove a remote repository                   
 git remote rm origin
-
 
 # Update your local master with the origin/master
 git pull origin master:master
 
-
 # Now your origin/masteris up to date, so you can rebase or merge your local branch with these changes.
 git fetch
-
 
 # And your develop branch will be up:          
 git rebase origin/master
 
-
 # To go back to pervious commit                 
 git reset --hard 7d2838af6180183c05969e0d1a18b4fed53682c7 (old reference)
-
 
 # To clone a branch:                         
 git clone -b <branch> <remote_repo>
 
-
 # checkout a new branch:                       
 git checkout -b <branch>
 
-
 # get local branches of your repo.                
 git branch
-
 
 # To push Tags
 Make changes
