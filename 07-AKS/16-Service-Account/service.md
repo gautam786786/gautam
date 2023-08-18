@@ -7,11 +7,8 @@ devops
 docker
 #
 git
-When you create any type of resource in Kubernetes, whether it’s a standard Pod, or a higher level controller that manages Pods like a Deployment or DaemonSet, the resource is deployed with a service account inside of Kubernetes.
+When you create any type of resource in Kubernetes, the resource is deployed with a service account inside of Kubernetes.
 
-Understanding what that service account does, and more importantly, the implications of using a service account to create Pods is crucial for any successful production deployment.
-
-In this blog post, you’re going to learn about service accounts in Kubernetes.
 
 What’s A Service Account?
 A service account is how workloads in Kubernetes run. It contains RBAC permissions that give it the ability to deploy resources to a Kubernetes cluster. Service accounts are used to connect to the Kubernetes API server.
@@ -112,4 +109,6 @@ You should see an output similar to the screenshot below, which under spec will 
 
 Image description
 
-Congrats! You have successfully created and used a new service account for Pod deployments.
+Congrats! You have successfully created and used a new service account for Pod deployments
+
+<!-- https://travis.media/kubernetes-service-accounts-complete-guide-for-beginners/ -->

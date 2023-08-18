@@ -83,11 +83,12 @@ kubectl get rolebindings,clusterrolebindings \
 --all-namespaces  \
 -o custom-columns='KIND:kind,NAMESPACE:metadata.namespace,NAME:metadata.name,SERVICE_ACCOUNTS:subjects[?(@.kind=="ServiceAccount")].name
 
-
 kubectl get clusterroles
 kubectl get clusterrolebindings
 find your role name and then delete
 kubectl delete clusterrolebinding name
 kubectl delete clusterrole name
+
+
 
 

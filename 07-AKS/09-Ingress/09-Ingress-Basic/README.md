@@ -1,3 +1,17 @@
+There may be times when the nginx ingress external IP (load balancer) is needed while configuring deployments. Below is example code showing how to retrieve it using a terraform data call:
+
+
+data "kubernetes_service" "example" {
+  metadata {
+    name = "ingress-nginx-controller"
+    namespace = "ingress-nginx"
+  }
+}
+
+output "test" {
+  value = data.kubernetes_service.example.status[0].load_balancer[0].ingress[0].ip
+}
+
 # Ingress - Basics
 
 ## Step-01: Introduction

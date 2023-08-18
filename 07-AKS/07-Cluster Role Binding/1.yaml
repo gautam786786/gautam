@@ -1,4 +1,17 @@
 # "namespace" omitted since ClusterRoles are not namespaced
+# A Role sets permissions within a particular namespace while a ClusterRole is a non-namespaced resource.
+# So one is restricted to a namespace, the other is not. Simple enough.
+# A Binding grants permissions defined in a Role or ClusterRole to a user or set of users.
+# These are called Subjects and include ServiceAccounts, Users, or Groups.
+# A RoleBinding grants permissions to a role in its namespace while a ClusterRoleBinding grants cluster-wide access.
+
+# So for example:
+
+# ClusterRole + ClusterRoleBinding = All Namespaces
+# ClusterRole + RoleBindings = Particular Namespaces
+# Role + RoleBinding = Same Namespace
+
+# https://travis.media/clusterrolebinding-with-service-account-all-namespaces/
 
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
