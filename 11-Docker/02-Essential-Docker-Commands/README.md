@@ -1,3 +1,5 @@
+docker rmi -f $(docker images -aq)
+
 # Docker - Essential Commands
 - The below are the list of essential commands we are in need 
 
@@ -20,3 +22,4 @@
 | docker stats | Display a live stream of container(s) resource usage statistics |
 | docker top container-id or name | Display the running processes of a container |
 | docker version | Show the Docker version information |
+
