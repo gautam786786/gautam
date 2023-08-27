@@ -1,13 +1,5 @@
+<!-- https://www.freecodecamp.org/news/the-docker-handbook/ -->
 In this tutorial, we have a .NET application and we want to dockerize it. This module will walk through that process.
-
-We'll learn how to:
-1. Create a Dockerfile
-1. Build docker image
-1. Run a docker image
-1. Stop a container
-1. Remove a container
-1. Remove an image
-1. Working with Docker Compose
 
 ## Introduction to containers
 
@@ -20,6 +12,7 @@ These images are typically available on a Container Registry like hub.docker.com
 There are also images available for database engines like [MySQL](https://hub.docker.com/_/mysql), [SQL Server](https://hub.docker.com/_/microsoft-mssql-server), [Oracle](https://hub.docker.com/_/oracle-database-enterprise-edition), Cassandra, etc.
 
 
+
 ## 1) Create a Dockerfile
 
 We have a sample .NET Core 5.0 web MVC application. We can run this application through the .NET cli tool:
@@ -28,6 +21,7 @@ We have a sample .NET Core 5.0 web MVC application. We can run this application 
 $ dotnet build
 $ dotnet run
 ```
+
 
 Now we want to run this same application in a Docker container. The process is similar to running the application inside a virtual machine:
 1. Choose a base VM running Linux or Windows.
@@ -222,3 +216,46 @@ az acr build -t "$acrName.azurecr.io/webapp:1.0" -r $acrName .
 ```
 
 Note that image is already pushed to ACR.
+
+## 10) Mount docker volume to the conatiner
+
+```bash
+docker run -it -v <local-path:container-path - w <working dir> <image> <teerminal>
+```
+```bash
+docker run -it -v <local-path:container-/work - w /work  alpine:3.9 /bin/bash
+```
+How would we do that in docker compose file 
+
+```bash
+  python: #docker run --rm -it -v ${PWD}:/work -w /work -p 5003:5000 aimvector/python:1.0.0 /bin/sh
+    container_name: python
+    image: aimvector/python:1.0.0
+    build:
+      context: ./python
+      target: debug
+    #working_dir: /work      #comment out for build.target:prod
+    #entrypoint: /bin/sh     #comment out for build.target:prod
+    #stdin_open: true        #comment out for build.target:prod
+    #tty: true               #comment out for build.target:prod
+    volumes:
+    - ./11-Docker/01_docker_dotnet/:/work  # local source, create a file here 
+    ports:
+      - 5003:5000
+      - 5678:5678
+```
+
+```bash
+docker-compose up -d # how to build 
+docker ps # 
+docker exec it -python sh # how to enter the container 
+```
+
+## 0) Use docker compose to build image
+
+Create a docker file and the the command from docker example 
+in docker file add from <image>
+
+```bash
+docker-compose build <docker file name>
+```

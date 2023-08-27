@@ -1,8 +1,8 @@
+https://developer.hashicorp.com/vault/docs?product_intent=vault
 # Initial setup 
 
 - Create an AKS cluster and Connect it to the AKS cluster 
-- check is helm is installed 
-  
+
 ```t
 # check helm if it's installed 
 helm                                                  
@@ -15,7 +15,7 @@ helm repo list
 
 # Add a repo                                          
 helm repo add hashicorp https://helm.release.hasicorp.com
-# you can copy the URL and see what iits using 
+# you can copy the URL and see what its using 
 
 #list the repo
 helm repo list                                    

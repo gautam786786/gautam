@@ -1,3 +1,5 @@
+https://devconnected.com/create-git-branch/#:~:text=The%20easiest%20way%20to%20create,branch%20you%20want%20to%20create.&text=To%20achieve%20that%2C%20you%20will,feature%E2%80%9D%20as%20the%20branch%20name.
+
 ```t
 # Get the remote URL                          
 git config --get remote.origin.url
@@ -38,6 +40,9 @@ git push --tags
 git add .
 git commit -m "w"
 git push
+
+# To find the differnce 
+git diff --name-only SHA1 SHA2
 ``` 
 
 

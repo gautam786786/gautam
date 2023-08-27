@@ -1,4 +1,19 @@
+Unix
+
+To delete all containers including its volumes use,
+
+docker rm -vf $(docker ps -aq)
+To delete all the images,
+
 docker rmi -f $(docker images -aq)
+Remember, you should remove all the containers before removing all the images from which those containers were created.
+
+Windows - Powershell
+
+docker images -a -q | % { docker image rm $_ -f }
+Windows - cmd.exe
+
+for /F %i in ('docker images -a -q') do docker rmi -f %i
 
 # Docker - Essential Commands
 - The below are the list of essential commands we are in need 

@@ -1,4 +1,4 @@
-# Vault Authentication
+# Vault Authentication There are many auth methods 
 
 # Authentication UI using username and password
 
@@ -34,18 +34,48 @@ vault auth enable userpass
 #Check-in vault that auth is enabled 
 
 #Create user and password
+# my default vault monts auth/userpass/users
 vault write auth/userpass/users/gautam password=gautam
 # Verify this in UI 
 
 #Login with the user
 vault login -method=userpass username=gautam
-#login using the password
+#login using the password notice it created a token and with the token there are policy applied and other information
 
+#list the auth methos
+Vault auth list 
+
+#read the deatils 
+vault read auth/userpass/users/gautam
 
 #The user can’t see much or do anything and we need to assign the policy 
 ``` 
 
+# Same can be down for github
+```t
+
+
+# I need to enable auth for username and password
+vault login
+#login using the  root token 
+
+#enable vault auth github
+vault auth enable github
+#Check-in vault that auth is enabled 
+
+#list the auth methos
+Vault auth list 
+
+#To login, the organization name is the username in github
+vault write auth/github/config organization=gautam
+# Verify this in UI 
+
+https://www.youtube.com/watch?v=-EHmM5ocUsM&ab_channel=LearnwithGVR
+``` 
+
 # Authentication API
+
+
 
 ```t
 #create a payload.json file and add the password below

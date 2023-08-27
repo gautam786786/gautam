@@ -7,4 +7,5 @@ capabilities = ["update"]
 }
 
 path "transit/*" {
-capabilities = ["lis
+capabilities = ["list"]
+}
