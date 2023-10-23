@@ -1,8 +1,6 @@
 # Create Azure AKS Cluster using AZ AKS CLI
 
-
-
-## Step-02: Pre-requisite-1: Create Resource Group
+##  Create Resource Group
 ```
 # Edit export statements to make any changes required as per your environment
 # Execute below export statements
@@ -16,7 +14,7 @@ az group create --location ${AKS_REGION} \
 ```
 
 
-## Step-02: Pre-requisite-2: Create Azure Virtual Network and Two Subnets
+## Step-02:  Create Azure Virtual Network and Two Subnets
 - Create Azure Virtual Network
 - Create Two subnets one for regular AKS Cluster and second one for Azure Virtual Nodes 
   - Subnet-1: aks-prod-default
@@ -56,7 +54,7 @@ echo ${AKS_VNET_SUBNET_DEFAULT_ID}
 ```
 
 
-## Step-02: Pre-requisite-3: Create Azure AD Group & Admin User
+## Step-02: Create Azure AD Group & Admin User
 - Create Azure AD Group: aksadmins
 - Create Azure AD User: aksadmin1 and associate to aksadmins ad group
 ```
@@ -81,8 +79,7 @@ Username: aksadmin1@stacksimplifygmail.onmicrosoft.com
 Password: @AKSDemo123
 ```
 
-## Step-04: Pre-requisite-4: Create SSH Key
-```
+## Step-04: Pre-requisite-4:
 # Create Folder
 mkdir $HOME/.ssh/aks-prod-sshkeys
 

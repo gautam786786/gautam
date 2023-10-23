@@ -1,17 +1,14 @@
 brew install terraform
-brew install github terraform
-Or for GUI based software
+
+brew install github terraform 
 
 brew cask install google-chrome
-and upgrading everything by:
 
 brew update && brew upgrade && brew upgrade --cask
-
 
 search for software available using:
 
 brew search firefox
-
 
 Below is a list of software recommended by some of our engineers:
 
