@@ -15,3 +15,7 @@ kubectl apply -f bad-namespace.yaml
 kubectl apply -f good-namespace.yaml
 
 # https://www.youtube.com/watch?v=urvSPmlU69k&ab_channel=HoussemDellai
+
+# https://www.youtube.com/watch?v=OJGmwCMsUNE&list=WL&index=6
+
+# https://www.youtube.com/watch?v=_pBYrm_CNrQ&list=WL&index=3

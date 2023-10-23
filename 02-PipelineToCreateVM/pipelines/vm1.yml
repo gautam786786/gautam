@@ -32,7 +32,7 @@ parameters:
   
 #Define variables to use in your pipeline.
 variables:               
-  SVC_CONNECTION: "gggagan1"
+  SVC_CONNECTION: "gggagan1"  # The service connection 
   Envioremnt : "gautam"
 
 
