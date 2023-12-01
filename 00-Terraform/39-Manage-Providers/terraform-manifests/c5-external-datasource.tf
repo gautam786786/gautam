@@ -27,4 +27,6 @@ output "private_key_file" {
   value = data.external.ssh_key_generator.result.private_key_file 
 }
 
+# If we were cretaing a VM we could us this as   
+# public_key = data.external.ssh_key_generator.result.public_key
 

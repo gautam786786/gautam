@@ -1,9 +1,14 @@
+# Resource-1: Azure Resource Group
+resource "azurerm_resource_group" "myrg" {
+  name = "gautam"
+  location = "uksouth"
+}
+
+
 # Datasources
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group
 data "azurerm_resource_group" "rgds" {
   name = azurerm_resource_group.myrg.name
-  #depends_on = [ azurerm_resource_group.myrg ]
-  #name = local.rg_name
 }
 
 ## TEST DATASOURCES using OUTPUTS
