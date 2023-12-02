@@ -1,3 +1,4 @@
+# nginx app 1 Deploymnet 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,6 +21,7 @@ spec:
           ports:
             - containerPort: 80
 ---
+# nginx app 1 service
 apiVersion: v1
 kind: Service
 metadata:
@@ -34,6 +36,7 @@ spec:
     - port: 80
       targetPort: 80
 ---
+# nginx app 2 Deploymnet 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,6 +59,7 @@ spec:
           ports:
             - containerPort: 80
 ---
+# nginx app 2 Service
 apiVersion: v1
 kind: Service
 metadata:
@@ -72,6 +76,7 @@ spec:
       targetPort: 80
 
 ---
+# Ingress
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -101,3 +106,5 @@ spec:
                 name: app2-nginx-clusterip-service
                 port: 
                   number: 80  
+
+                  

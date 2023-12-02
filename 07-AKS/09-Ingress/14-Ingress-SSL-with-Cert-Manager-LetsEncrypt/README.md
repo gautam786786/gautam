@@ -147,22 +147,7 @@ kubectl -n ingress-basic get pods
 # Check logs
 kubectl -n ingress-basic logs -f nginx-ingress-controller-xxxxxxxxx
 ```
-## Step-12: Clean-Up
-```t
-# Delete Apps
-kubectl delete -R -f kube-manifests/
 
-# Delete Ingress Controller
-kubectl delete namespace ingress-basic
-```
 
-## Cert Manager
-- https://cert-manager.io/docs/installation/#default-static-install
-- https://cert-manager.io/docs/installation/helm/
-- https://docs.cert-manager.io/
-- https://cert-manager.io/docs/installation/helm/#1-add-the-jetstack-helm-repository
-- https://cert-manager.io/docs/configuration/
-- https://cert-manager.io/docs/tutorials/acme/nginx-ingress/#step-6---configure-a-lets-encrypt-issuer
-- https://letsencrypt.org/how-it-works/
 
   

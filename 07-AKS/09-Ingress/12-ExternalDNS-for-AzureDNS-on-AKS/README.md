@@ -221,34 +221,3 @@ http://eapp1.kubeoncloud.com/app1/index.html
 # Note: Replace kubeoncloud.com with your domain name
 ```
 
-## Step-07: Clean-Up
-```t
-# Delete Application
-kubectl delete -f kube-manifests/02-NginxApp1
-
-# Verify External DNS pod to ensure record set got deleted
-kubectl logs -f $(kubectl get po | egrep -o 'external-dns[A-Za-z0-9-]+')
-
-# Verify Record set got automatically deleted in DNS Zones
-# Template Command
-az network dns record-set a list -g <Resource-Group-dnz-zones> -z <yourdomain.com>
-
-# Replace DNS Zones Resource Group and yourdomain
-az network dns record-set a list -g dns-zones -z kubeoncloud.com
-```
-
-```log
-time="2020-08-24T12:08:52Z" level=info msg="Deleting A record named 'eapp1' for Azure DNS zone 'kubeoncloud.com'."
-time="2020-08-24T12:08:53Z" level=info msg="Deleting TXT record named 'eapp1' for Azure DNS zone 'kubeoncloud.com'."
-```
-
-## References
-- https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/azure.md
-- Open Issue and Break fix: https://github.com/kubernetes-sigs/external-dns/issues/1548
-- https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx#configuration
-- https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml
-- https://kubernetes.github.io/ingress-nginx/
-
-## External DNS References
-- https://github.com/kubernetes-sigs/external-dns
-- https://github.com/kubernetes-sigs/external-dns/blob/master/docs/faq.md

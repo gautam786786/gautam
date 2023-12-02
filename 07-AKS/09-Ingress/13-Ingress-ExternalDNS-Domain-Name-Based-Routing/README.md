@@ -65,9 +65,5 @@ az network dns record-set a list -g <Resource-Group-dnz-zones> -z <yourdomain.co
 az network dns record-set a list -g dns-zones -z kubeoncloud.com
 ```
 
-## Ingress Annotation Reference
-- https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
 
-## Other References
-- https://docs.nginx.com/nginx-ingress-controller/
 
