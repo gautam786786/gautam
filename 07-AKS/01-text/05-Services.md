@@ -1,6 +1,5 @@
 # There are four different service types, each with different behaviors:
 
-
 # Service:
 
 - Each pod gets its own IP address, but Pods are ephemeral they destroy frequently
