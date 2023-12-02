@@ -53,74 +53,7 @@ doskey /HISTORY > history.txt
 Test-NetConnection [Destination] -Port XXXX
 
 
-Get AD Group Members:
-Get-ADGroup 'GROUPNAME'| Get-ADGroupMember | Select Name | Sort Name | ft -AutoSize
 
-Freespace 
-Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" 
-
-
-User logged on
-Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName 
-
-Restart  a Service on remote pc 
-Invoke-Command -ComputerName gautam01 {Restart-Service Spooler} 
-
-
-
-Get-PSDrive -PSProvider FileSystem
- 
-
-All IP in use
-Get-CimInstance -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true |
-  Select-Object -ExpandProperty IPAddress 
-
-Ping 
-Get-CimInstance -Class Win32_PingStatus -Filter "Address='127.0.0.1'" |
-  Format-Table -Property Address,ResponseTime,StatusCode -Autosize 
-
-
-Ping Multiple IP
-'127.0.0.1','localhost','research.microsoft.com' |
-  ForEach-Object -Process {
-    Get-CimInstance -Class Win32_PingStatus -Filter ("Address='$_'") |
-      Select-Object -Property Address,ResponseTime,StatusCode
-  } 
-
-Output 
-Get-Process | Out-File -FilePath C:\temp\processlist.txt 
-
-Folders in a drive 
-Get-ChildItem -Path C:\ -Force 
-
-For every thing use 
-
-Get-ChildItem -Path C:\ -Force -Recurse 
-
-
-The following command finds all executables within the Program Files folder that were last modified after October 1, 2005 and which are neither smaller than 1 megabyte nor larger than 10 megabytes:
-
-Get-ChildItem -Path $env:ProgramFiles -Recurse -Include *.exe | Where-Object -FilterScript {($_.LastWriteTime -gt '2005-10-01') -and ($_.Length -ge 1mb) -and ($_.Length -le 10mb)}
- 
-
-
-
-List VMs in a subscription ==	                  Get-AzVM
-List VMs in a resource group == 	Get-AzVM -ResourceGroupName $myResourceGroup
-Get information about a VM ==	Get-AzVM -ResourceGroupName $myResourceGroup -Name $myVM
-Start a VM ==	                                    Start-AzVM -ResourceGroupName $myResourceGroup -Name $myVM
-Stop a VM ==	                                    Stop-AzVM -ResourceGroupName $myResourceGroup -Name $myVM
-Restart a running VM ==	                   Restart-AzVM -ResourceGroupName $myResourceGroup -Name $myVM
-Delete a VM ==	                                    Remove-AzVM -ResourceGroupName $myResourceGroup -Name $myVM
-
-•	Enter-PSSession -ComputerName RemoteServer -Port 5353 -Credential Domain\Username
-•	Get-EventLog -LogName System -InstanceID c0ffee -Source “LSA“
-•	Start-Process -FilePath “notepad” -Wait -WindowStyle Maximized
-•	Restart-Computer -ComputerName “Server01”, “Server02”, “Server03”
-•	Test-Connection -ComputerName “Server01” -Count 3 -Delay 2 -TTL 255 -BufferSize 256 -ThrottleLimit 32
-•	Test-NetConnection [Destination] -Port XXXX
-
-•	Get-Service | Where-Object {$_.Status -eq “Running”}
 
 Turn off VM 
 # Connecting to Azure using the AzureRunAsConnection.

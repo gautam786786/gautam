@@ -14,7 +14,6 @@ output "test" {
 
 # Ingress - Basics
 
-## Step-01: Introduction
 ### Ingress Basic Architecture
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
@@ -117,21 +116,3 @@ kubectl logs -f <pod-name> -n ingress-basic
 kubectl delete -f kube-manifests/
 ```
 
-## Ingress Annotation Reference
-- https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
-
-## Other References
-- https://github.com/kubernetes/ingress-nginx
-- https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml
-- https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/cloud/deploy.yaml
-- https://kubernetes.github.io/ingress-nginx/deploy/#azure
-- https://helm.sh/docs/intro/install/
-- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io
-- [Kubernetes Ingress API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#ingress-v1-networking-k8s-io)
-- [Ingress Path Types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
-
-## Important Note
-```
-Ingress Admission Webhooks
-With nginx-ingress-controller version 0.25+, the nginx ingress controller pod exposes an endpoint that will integrate with the validatingwebhookconfiguration Kubernetes feature to prevent bad ingress from being added to the cluster. This feature is enabled by default since 0.31.0.
-```
