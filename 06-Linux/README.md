@@ -12,7 +12,6 @@ systemctl status apache2
 **logs-->**
 journalctl --no-page -u apache2.service Note. -f key works with journalctl well as with tail
 
-[![Image](https://github.com/gautam-thakur786/terraform-code/blob/main/06-Linux/20230820_094041.jpg
-
+[![Image](https://github.com/gautam-thakur786/terraform-code/blob/main/06-Linux/20230820_094041.jpg)]
 
 
