@@ -41,17 +41,25 @@ git add .
 git commit -m "w"
 git push
 
-
-
 # To find the differnce 
 git diff --name-only SHA1 SHA2
+
+
+# git rev-parse is an ancillary plumbing command primarily used for manipulation.
+git rev-parse --symbolic-full-name HEAD
+# output: refs/heads/cazr6855
+
+
+# To display only the name of the current branch you're on:
+git rev-parse --abbrev-ref HEAD
+# Output:cazr6855
+
+
+
+
+
+
 ``` 
-
-
-
-
-
-[![Image](https://stacksimplify.com/course-images/azure-terraform-install-1.png "HashiCorp Certified: Terraform Associate on Azure")](https://stacksimplify.com/course-images/azure-terraform-install-1.png)
 
 ## Step-02: MACOS: Terraform Install
 - [Download Terraform MAC](https://www.terraform.io/downloads.html)
