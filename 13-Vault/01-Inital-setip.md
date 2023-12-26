@@ -1,3 +1,4 @@
+https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-azure-aks
 https://developer.hashicorp.com/vault/docs?product_intent=vault
 # Initial setup 
 

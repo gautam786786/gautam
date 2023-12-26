@@ -42,8 +42,13 @@ git commit -m "w"
 git push
 
 # To find the differnce 
-git diff --name-only SHA1 SHA2
+$ git diff branch1..branch2
+$ git diff master..feature
 
+#Comparing two branches using triple dot syntax
+$ git diff branch1...branch2
+#Using “git diff” with three dots compares the top of the right branch (the HEAD) with the common ancestor of the two branches.
+# https://devconnected.com/how-to-compare-two-git-branches/
 
 # git rev-parse is an ancillary plumbing command primarily used for manipulation.
 git rev-parse --symbolic-full-name HEAD
@@ -53,9 +58,6 @@ git rev-parse --symbolic-full-name HEAD
 # To display only the name of the current branch you're on:
 git rev-parse --abbrev-ref HEAD
 # Output:cazr6855
-
-
-
 
 
 

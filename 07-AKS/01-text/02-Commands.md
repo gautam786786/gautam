@@ -5,13 +5,13 @@ az aks get-credentials --resource-group aks-rg1 --name aksdemo1 --overwrite-exis
 kubectl get nodes/   -o wide
 
 # List Pods →                                           
-kubectl get pods/ po  / -o wide
+kubectl get pods/ po  -n <namespace> / -o wide
 
 # Describe the pod →                         
-Kubectl describe pod <pod name>
+Kubectl describe pod <pod name> -n <namespace>
 
 # Delete Pod →                                     
-kubectl delete pod <Pod name>
+kubectl delete pod <Pod name> -n <namespace>
 
 # Create a Pod →                                  
 kubectl run <desired-pod-name> --image <Container-Image> 
@@ -20,7 +20,7 @@ kubectl run <desired-pod-name> --image <Container-Image>
 kubectl get pods -n <namespace> (kubectl get namespace/ns)
 
 # Logs→                                                   
-k logs <pod-name>
+k logs <pod-name> -n <namespace>
 
 # stream pod logs with -f-->              
 k logs -f <pod-name>
@@ -28,7 +28,7 @@ k logs -f <pod-name>
 Services 
 
 # Service Info →                                        
-kubectl get service    /svc.    /-o wide
+kubectl get service  -n <namespace>  /svc.    /-o wide
 
 # Delete Service->                              
 delete svc <YourServiceName>

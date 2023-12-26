@@ -1,4 +1,4 @@
-## variables.tf ##
+#lookup(map,key,default)
 
 variable "site_names" {
   type        = list(string)

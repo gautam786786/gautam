@@ -1,3 +1,7 @@
+http://vcloud-lab.com/entries?page=1#post-112923
+
+terraform apply -var-file="testing.tfvars"
+
 # make sure terraform CLI is installed
 terraform
 
