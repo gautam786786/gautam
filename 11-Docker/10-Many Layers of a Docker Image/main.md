@@ -1,42 +1,10 @@
-### How to Understand the Many Layers of a Docker Image
+# How to Understand the Many Layers of a Docker Image
 
 For this demonstration, I'll be using the custom-nginx:packaged image from the previous sub-section.
 
-To visualize the many layers of an image, you can use the image history command. The various layers of the custom-nginx:packaged image can be visualized as follows:
+# How to Build NGINX from Source
 
-docker image history custom-nginx:packaged
-
-# IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-# 7f16387f7307        5 minutes ago       /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon…   0B                             
-# 587c805fe8df        5 minutes ago       /bin/sh -c apt-get update &&     apt-get ins…   60MB                
-# 6fe4e51e35c1        6 minutes ago       /bin/sh -c #(nop)  EXPOSE 80                    0B                  
-# d70eaf7277ea        17 hours ago        /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B                  
-
-There are eight layers of this image. The upper most layer is the latest one and as you go down the layers get older. The upper most layer is the one that you usually use for running containers.
-
-Now, let's have a closer look at the images beginning from image d70eaf7277ea down to 7f16387f7307. 
-
-d70eaf7277ea was created by /bin/sh -c #(nop)  CMD ["/bin/bash"] which indicates that the default shell inside Ubuntu has been loaded successfully.
-
-6fe4e51e35c1 was created by /bin/sh -c #(nop)  EXPOSE 80 which was the second instruction in your code.
-
-587c805fe8df was created by /bin/sh -c apt-get update && apt-get install nginx -y && apt-get clean && rm -rf /var/lib/apt/lists/* which was the third instruction in your code. You can also see that this image has a size of 60MB given all necessary packages were installed during the execution of this instruction.
-
-Finally the upper most layer 7f16387f7307 was created by /bin/sh -c #(nop)  CMD ["nginx", "-g", "daemon off;"] which sets the default command for this image.
-
-As you can see, the image comprises of many read-only layers, each recording a new set of changes to the state triggered by certain instructions. When you start a container using an image, you get a new writable layer on top of the other layers.
-
-This layering phenomenon that happens every time you work with Docker has been made possible by an amazing technical concept called a union file system. Here, union means union in set theory. According to Wikipedia -
-
-It allows files and directories of separate file systems, known as branches, to be transparently overlaid, forming a single coherent file system. Contents of directories which have the same path within the merged branches will be seen together in a single merged directory, within the new, virtual filesystem.
-
-By utilizing this concept, Docker can avoid data duplication and can use previously created layers as a cache for later builds. This results in compact, efficient images that can be used everywhere.
-
-How to Build NGINX from Source
-
-In order to build NGINX from source, you first need the source of NGINX. If you've cloned my projects repository you'll see a file named nginx-1.19.2.tar.gz inside the custom-nginx directory. You'll use this archive as the source for building NGINX.
-
- The image creation process this time can be done in seven steps. These are as follows:
+In order to build NGINX from source, you first need the source of NGINX. 
 
 Get a good base image for building the application, like ubuntu.
 
@@ -53,7 +21,7 @@ Get rid of the extracted source code.
 Run nginx executable.
 
 Now that you have a plan, let's begin by opening up old Dockerfile and updating its contents as follows:
-
+```bash
 FROM ubuntu:latest
 
 RUN apt-get update && \
@@ -85,7 +53,7 @@ RUN cd nginx-1.19.2 && \
 RUN rm -rf /nginx-1.19.2
 
 CMD ["nginx", "-g", "daemon off;"]
-
+```
 As you can see, the code inside the Dockerfile reflects the seven steps I talked about above.
 
 The FROM instruction sets Ubuntu as the base image making an ideal environment for building any application.
@@ -103,38 +71,10 @@ Once the build and installation is complete, you remove the nginx-1.19.2 directo
 On the final step you start NGINX in single process mode just like you did before.
 
 Now to build an image using this code, execute the following command:
-
+```bash
 docker image build --tag custom-nginx:built .
+```
 
-# Step 1/7 : FROM ubuntu:latest
-#  ---> d70eaf7277ea
-# Step 2/7 : RUN apt-get update &&     apt-get install build-essential                    libpcre3                     libpcre3-dev                     zlib1g                     zlib1g-dev                     libssl-dev                     -y &&     apt-get clean && rm -rf /var/lib/apt/lists/*
-#  ---> Running in 2d0aa912ea47
-### LONG INSTALLATION STUFF GOES HERE ###
-# Removing intermediate container 2d0aa912ea47
-#  ---> cbe1ced3da11
-# Step 3/7 : COPY nginx-1.19.2.tar.gz .
-#  ---> 7202902edf3f
-# Step 4/7 : RUN tar -xvf nginx-1.19.2.tar.gz && rm nginx-1.19.2.tar.gz
- ---> Running in 4a4a95643020
-### LONG EXTRACTION STUFF GOES HERE ###
-# Removing intermediate container 4a4a95643020
-#  ---> f9dec072d6d6
-# Step 5/7 : RUN cd nginx-1.19.2 &&     ./configure         --sbin-path=/usr/bin/nginx         --conf-path=/etc/nginx/nginx.conf         --error-log-path=/var/log/nginx/error.log         --http-log-path=/var/log/nginx/access.log         --with-pcre         --pid-path=/var/run/nginx.pid         --with-http_ssl_module &&     make && make install
-#  ---> Running in b07ba12f921e
-### LONG CONFIGURATION AND BUILD STUFF GOES HERE ###
-# Removing intermediate container b07ba12f921e
-#  ---> 5a877edafd8b
-# Step 6/7 : RUN rm -rf /nginx-1.19.2
-#  ---> Running in 947e1d9ba828
-# Removing intermediate container 947e1d9ba828
-#  ---> a7702dc7abb7
-# Step 7/7 : CMD ["nginx", "-g", "daemon off;"]
-#  ---> Running in 3110c7fdbd57
-# Removing intermediate container 3110c7fdbd57
-#  ---> eae55f7369d3
-# Successfully built eae55f7369d3
-# Successfully tagged custom-nginx:built
 
 This code is alright but there are some places where we can make improvements.
 
@@ -143,7 +83,7 @@ Instead of hard coding the filename like nginx-1.19.2.tar.gz, you can create an 
 Instead of downloading the archive manually, you can let the daemon download the file during the build process. There is another instruction like COPY called the ADD instruction which is capable of adding files from the internet.
 
 Open up the Dockerfile file and update its content as follows:
-
+```bash
 FROM ubuntu:latest
 
 RUN apt-get update && \
@@ -178,7 +118,7 @@ RUN cd ${FILENAME} && \
 RUN rm -rf /${FILENAME}}
 
 CMD ["nginx", "-g", "daemon off;"]
-
+```
 The code is almost identical to the previous code block except for a new instruction called ARG on line 13, 14 and the usage of the ADD instruction on line 16. Explanation for the updated code is as follows:
 
 The ARG instruction lets you declare variables like in other languages. These variables or arguments can later be accessed using the ${argument name} syntax. Here, I've put the filename nginx-1.19.2 and the file extension tar.gz in two separate arguments. This way I can switch between newer versions of NGINX or the archive format by making a change in just one place. In the code above, I've added default values to the variables. Variable values can be passed as options of the image build command as well. You can consult the official reference for more details.
@@ -187,60 +127,200 @@ In the ADD instruction, I've formed the download URL dynamically using the argum
 
 The ADD instruction doesn't extract files obtained from the internet by default, hence the usage of tar on line 18.
 
-The rest of the code is almost unchanged. You should be able to understand the usage of the arguments by yourself now. Finally let's try to build an image from this updated code.
-
+The rest of the code is almost unchanged. 
+```bash
 docker image build --tag custom-nginx:built .
-
-# Step 1/9 : FROM ubuntu:latest
-#  ---> d70eaf7277ea
-# Step 2/9 : RUN apt-get update &&     apt-get install build-essential                    libpcre3                     libpcre3-dev                     zlib1g                     zlib1g-dev                     libssl-dev                     -y &&     apt-get clean && rm -rf /var/lib/apt/lists/*
-#  ---> cbe1ced3da11
-### LONG INSTALLATION STUFF GOES HERE ###
-# Step 3/9 : ARG FILENAME="nginx-1.19.2"
-#  ---> Running in 33b62a0e9ffb
-# Removing intermediate container 33b62a0e9ffb
-#  ---> fafc0aceb9c8
-# Step 4/9 : ARG EXTENSION="tar.gz"
-#  ---> Running in 5c32eeb1bb11
-# Removing intermediate container 5c32eeb1bb11
-#  ---> 36efdf6efacc
-# Step 5/9 : ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
-# Downloading [==================================================>]  1.049MB/1.049MB
-#  ---> dba252f8d609
-# Step 6/9 : RUN tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION}
-#  ---> Running in 2f5b091b2125
-### LONG EXTRACTION STUFF GOES HERE ###
-# Removing intermediate container 2f5b091b2125
-#  ---> 2c9a325d74f1
-# Step 7/9 : RUN cd ${FILENAME} &&     ./configure         --sbin-path=/usr/bin/nginx         --conf-path=/etc/nginx/nginx.conf         --error-log-path=/var/log/nginx/error.log         --http-log-path=/var/log/nginx/access.log         --with-pcre         --pid-path=/var/run/nginx.pid         --with-http_ssl_module &&     make && make install
-#  ---> Running in 11cc82dd5186
-### LONG CONFIGURATION AND BUILD STUFF GOES HERE ###
-# Removing intermediate container 11cc82dd5186
-#  ---> 6c122e485ec8
-# Step 8/9 : RUN rm -rf /${FILENAME}}
-#  ---> Running in 04102366960b
-# Removing intermediate container 04102366960b
-#  ---> 6bfa35420a73
-# Step 9/9 : CMD ["nginx", "-g", "daemon off;"]
-#  ---> Running in 63ee44b571bb
-# Removing intermediate container 63ee44b571bb
-#  ---> 4ce79556db1b
-# Successfully built 4ce79556db1b
-# Successfully tagged custom-nginx:built
+```
 
 Now you should be able to run a container using the custom-nginx:built image.
-
+```bash
 docker container run --rm --detach --name custom-nginx-built --publish 8080:80 custom-nginx:built
 
-# 90ccdbc0b598dddc4199451b2f30a942249d85a8ed21da3c8d14612f17eed0aa
 
 docker container ls
-
-# CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS              PORTS                  NAMES
-# 90ccdbc0b598        custom-nginx:built   "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        0.0.0.0:8080->80/tcp   custom-nginx-built
+```
 
 A container using the custom-nginx:built-v2 image has been successfully run. The container should be accessible at http://127.0.0.1:8080 now.
 
 And here is the trusty default response page from NGINX. You can visit the official reference site to learn more about the available instructions.
 
-How to Optimize Docker Images
+# How to Optimize Docker Images
+
+The image we built very unoptimized. To prove my point let's have a look at the size of the image using the image ls command:
+
+docker image ls
+
+# REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+# custom-nginx       built     1f3aaf40bb54   16 minutes ago   343MB
+```bash
+docker image pull nginx:stable
+
+docker image ls
+```
+In order to find out the root cause, let's have a look at the Dockerfile first:
+```bash
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get install build-essential\ 
+                    libpcre3 \
+                    libpcre3-dev \
+                    zlib1g \
+                    zlib1g-dev \
+                    libssl1.1 \
+                    libssl-dev \
+                    -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ARG FILENAME="nginx-1.19.2"
+ARG EXTENSION="tar.gz"
+
+ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
+
+RUN tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION}
+
+RUN cd ${FILENAME} && \
+    ./configure \
+        --sbin-path=/usr/bin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --with-pcre \
+        --pid-path=/var/run/nginx.pid \
+        --with-http_ssl_module && \
+    make && make install
+
+RUN rm -rf /${FILENAME}}
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+As you can see on line 3, the RUN instruction installs a lot of stuff. Although these packages are necessary for building NGINX from source, they are not necessary for running it.
+
+Out of the 6 packages that we installed, only two are necessary for running NGINX. These are libpcre3 and zlib1g. So a better idea would be to uninstall the other packages once the build process is done.
+
+To do so, update your Dockerfile as follows:
+```bash
+FROM ubuntu:latest
+
+EXPOSE 80
+
+ARG FILENAME="nginx-1.19.2"
+ARG EXTENSION="tar.gz"
+
+ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
+
+RUN apt-get update && \
+    apt-get install build-essential \ 
+                    libpcre3 \
+                    libpcre3-dev \
+                    zlib1g \
+                    zlib1g-dev \
+                    libssl1.1 \
+                    libssl-dev \
+                    -y && \
+    tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION} && \
+    cd ${FILENAME} && \
+    ./configure \
+        --sbin-path=/usr/bin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --with-pcre \
+        --pid-path=/var/run/nginx.pid \
+        --with-http_ssl_module && \
+    make && make install && \
+    cd / && rm -rfv /${FILENAME} && \
+    apt-get remove build-essential \ 
+                    libpcre3-dev \
+                    zlib1g-dev \
+                    libssl-dev \
+                    -y && \
+    apt-get autoremove -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+As you can see, on line 10 a single RUN instruction is doing all the necessary heavy-lifting. The exact chain of events is as follows:
+
+From line 10 to line 17, all the necessary packages are being installed.
+
+On line 18, the source code is being extracted and the downloaded archive gets removed.
+
+From line 19 to line 28, NGINX is configured, built, and installed on the system.
+
+On line 29, the extracted files from the downloaded archive get removed.
+
+From line 30 to line 36, all the unnecessary packages are being uninstalled and cache cleared. The libpcre3 and zlib1g packages are needed for running NGINX so we keep them.
+
+You may ask why am I doing so much work in a single RUN instruction instead of nicely splitting them into multiple instructions like we did previously. Well, splitting them up would be a mistake.
+
+If you install packages and then remove them in separate RUN instructions, they'll live in separate layers of the image. Although the final image will not have the removed packages, their size will still be added to the final image since they exist in one of the layers consisting the image. So make sure you make these kind of changes on a single layer.
+
+Let's build an image using this Dockerfile and see the differences.
+```bash
+docker image build --tag custom-nginx:built .
+
+docker image ls
+```
+
+
+As you can see, the image size has gone from being 343MB to 81.6MB. The official image is 133MB. This is a pretty optimized build, but we can go a bit further in the next sub-section.
+
+Embracing Alpine Linux
+
+If you've been fiddling around with containers for some time now, you may have heard about something called Alpine Linux. It's a full-featured Linux distribution like Ubuntu, Debian or Fedora.
+
+Although not as user friendly as the other commercial distributions, the transition to Alpine is still very simple. In this sub-section you'll learn about recreating the custom-nginx image using the Alpine image as its base.
+
+Open up your Dockerfile and update its content as follows:
+```bash
+FROM alpine:latest
+
+EXPOSE 80
+
+ARG FILENAME="nginx-1.19.2"
+ARG EXTENSION="tar.gz"
+
+ADD https://nginx.org/download/${FILENAME}.${EXTENSION} .
+
+RUN apk add --no-cache pcre zlib && \
+    apk add --no-cache \
+            --virtual .build-deps \
+            build-base \ 
+            pcre-dev \
+            zlib-dev \
+            openssl-dev && \
+    tar -xvf ${FILENAME}.${EXTENSION} && rm ${FILENAME}.${EXTENSION} && \
+    cd ${FILENAME} && \
+    ./configure \
+        --sbin-path=/usr/bin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --with-pcre \
+        --pid-path=/var/run/nginx.pid \
+        --with-http_ssl_module && \
+    make && make install && \
+    cd / && rm -rfv /${FILENAME} && \
+    apk del .build-deps
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+The code is almost identical except for a few changes. I'll be listing the changes and explaining them as I go:
+
+Instead of using apt-get install for installing packages, we use apk add. The --no-cache option means that the downloaded package won't be cached. Likewise we'll use apk del instead of apt-get remove to uninstall packages.
+
+The --virtual option for the apk add command is used for bundling a bunch of packages into a single virtual package for easier management. Packages that are needed only for building the program are labeled as .build-deps which are then removed on line 29 by executing the apk del .build-deps command. You can learn more about virtuals in the official docs.
+
+The package names are a bit different here. Usually every Linux distribution has its package repository available to everyone where you can search for packages. If you know the packages required for a certain task, then you can just head over to the designated repository for a distribution and search for it. You can look up Alpine Linux packages here.
+
+Now build a new image using this Dockerfile and see the difference in file size:
+```bash
+docker image build --tag custom-nginx:built .
+```
+docker image ls
+```
+
+
+Where the ubuntu version was 81.6MB, the alpine one has come down to 12.8MB which is a massive gain. Apart from the apk package manager, there are some other things that differ in Alpine from Ubuntu but they're not that big a deal. You can just search the internet whenever you get stuck.
