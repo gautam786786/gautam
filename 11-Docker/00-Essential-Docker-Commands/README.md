@@ -1,10 +1,10 @@
 Bash:
 
-# To delete all containers including its volumes use,
+# Delete all containers including its volumes use,
 ```bash
 docker rm -vf $(docker ps -aq)
 ```
-# To delete all the images
+# Delete all the images
 ```bash
 docker rmi -f $(docker images -aq)
 ```
@@ -47,7 +47,7 @@ for /F %i in ('docker images -a -q') do docker rmi -f %i
 https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
 
-# Look at all the containers that are currently running or have run in the past:
+# List Containers that are currently running or have run in the past:
 ```bash
 docker ps -a
 ```
@@ -80,7 +80,7 @@ docker container run --publish 8080:80 fhsinchy/hello-dock
 
 The command is pretty self-explanatory. The only portion that may require some explanation is the --publish 8080:80 portion which will be explained in the next sub-section.
 
-# How to List Containers
+# List Containers
 ```bash
 docker container ls
 ```
@@ -90,7 +90,7 @@ The container ls command only lists the containers that are currently running on
 docker container ls --all
 ```
 
-# How to Name or Rename a Container
+# Name or Rename a Container
 
 By default, every container has two identifiers. They are as follows:
 
@@ -109,12 +109,12 @@ The 8080 port on local network is occupied by the gifted_sammet container (the c
 docker container ls
 ```
 
-# Rename old containers using the container rename command. Syntax for the command is as follows:
+# Rename old containers
 ```bash
 docker container rename <container identifier> <new name>
 ```
 
-# How to Stop or Kill a Running Container
+# Stop or Kill a Running Container
 
 Containers running in the foreground can be stopped by simply closing the terminal window or hitting ctrl + c. Containers running in the background, however, can not be stopped in the same way.
 
@@ -134,7 +134,7 @@ In cases where you want to send a SIGKILL signal instead of a SIGTERM signal, yo
 docker container kill hello-dock-container-2
 ```
 
-# How to Restart a Container
+# Restart a Container
 ```bash
 docker container start <container identifier>
 ```
@@ -147,7 +147,7 @@ docker container start hello-dock-container
 docker container restart hello-dock-container-2
 ```
 
-# How to Create a Container Without Running
+# Create a Container Without Running
 
 ```bash
 docker container create --publish 8080:80 fhsinchy/hello-dock
@@ -160,7 +160,7 @@ docker container ls
 ```
               
 
-# How to Remove Dangling Containers
+# Remove Dangling Containers
 
 As you've already seen, containers that have been stopped or killed remain in the system. 
 
@@ -182,7 +182,7 @@ You can check the container list using the container ls --all command to make su
 docker container ls --all
 ```
 
-# How to Run a Container in Interactive Mode
+# Run a Container in Interactive Mode
 ```bash
 docker container run --rm -it ubuntu
 ```
