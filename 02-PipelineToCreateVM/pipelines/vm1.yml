@@ -32,7 +32,7 @@ parameters:
   
 #Define variables to use in your pipeline.
 variables:               
-  SVC_CONNECTION: "bikram"  # The service connection 
+  SVC_CONNECTION: "azure13"  # The service connection 
   Envioremnt : "gautam"
 
 
